@@ -24,6 +24,10 @@ figure outputs:https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/figu
 
     - HiFi Reads Repeats, Length, Coverage , Quality : CCS reads are compared to repeat consensus sequences using blast. Total repeat content is then calculated.Then, contigs are generated and the same process is repeated. Finally, the contig v satellite repeat output is used to check for anchored ends on contigs, defined as contigs that do not have a satellite hit within 100bp of start or end bp.
       https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/RepContentAndContigAnchor.sh
+
+    -biases
+   	flow cell code: https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/flowcell_bias.sh
+        length bias : https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/length_bias.sh
       
 
 4. Arrays

@@ -25,17 +25,26 @@ figure outputs:https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/figu
     - HiFi Reads Repeats, Length, Coverage , Quality : CCS reads are compared to repeat consensus sequences using blast. Total repeat content is then calculated.Then, contigs are generated and the same process is repeated. Finally, the contig v satellite repeat output is used to check for anchored ends on contigs, defined as contigs that do not have a satellite hit within 100bp of start or end bp.
       https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/RepContentAndContigAnchor.sh
 
-    -biases
-   	flow cell code: https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/flowcell_bias.sh
-        length bias : https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/length_bias.sh
+      outputs: https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/out
+
+    - biases
+   
+   		flow cell code: https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/flowcell_bias.sh
+   
+   		length bias : https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/length_bias.sh
       
 
 4. Arrays
    **_Conserved Repeat Positions._**
    - Finding Arrays : Repeat hits within 10kb were merged using bedtools. Arrays with >=10 monomers and >= 10% repeat content were defined as repeat arrays. Array positions were then compared to 100N gaps using bedtools. Then, array positions were compared to core genes using bedtools closest.
      https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/ArrayPositions.sh
+
+	
+     
    - Conserved Array Positions : Array positions were clustered together based on repeat type and shared up and down core genes.
      https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/Conserved_Arrays.R
+
+     outputs: https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/out
 
 5. Structure 
    **_Repeat Structure._**

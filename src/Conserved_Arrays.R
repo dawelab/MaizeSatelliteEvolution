@@ -8,6 +8,7 @@ library("stringr")
 library(tidyverse)
 library(igraph)
 
+#reading in and prepping df
 "%!in%" <- Negate("%in%")
 chr_lens<- read.table("Mo17_t2t.fna.fai")
 chr_lens$chr<- chr_lens$V1
@@ -27,7 +28,7 @@ arrays$dat<-factor(arrays$dat, levels=c("Mo17_half_Mo17","AB10_half_Mo17", "B73_
 arrays$gene_up<- str_split(arrays$gene_up, pattern = ",", simplify=T)[,1] 
 arrays$gene_down<- str_split(arrays$gene_down, pattern = ",", simplify=T)[,1]
 
-
+# merging list of conserved genes with coordinates with arrays to get plooting coordaintes projected onto the reference
 ref_pos<- read.table("Zm-Mo17-REFERENCE-CAU-2.0_Zm00014ba.gff3.txt.bed")
 colnames(ref_pos)<- c("chr", "ref_start", "ref_end", "gene")
 ref_pos_up<- ref_pos[,c("ref_end", "gene")]
@@ -45,6 +46,7 @@ arrays_pos %>% group_by(group) %>% summarise(n=n()) #173
 arrays_pos[arrays_pos$gene_up %in% ".", ]$gene_up<- paste(arrays_pos[arrays_pos$gene_up %in% ".", ]$gene_down, "edit", sep="_")
 arrays_pos[arrays_pos$gene_down %in% ".", ]$gene_down<- paste(arrays_pos[arrays_pos$gene_down %in% ".", ]$gene_up, "edit", sep="_")
 
+#edge list for arrays. if arrays share up or down gene, give edge. This allows us the group by shared up OR shared down genes
 arrays_pos$unique_name<- paste(arrays_pos$dat, arrays_pos$array_start, arrays_pos$chr, sep="_" )
 arrays_pos_chr_edges<- as.data.frame(matrix(nrow=0, ncol=2))
 for(i in 1:nrow(arrays_pos)){
@@ -55,6 +57,7 @@ for(i in 1:nrow(arrays_pos)){
     print(i)
 }}
 
+#cluster, group based on cluster membership. 
 g1<- graph_from_edgelist(as.matrix(arrays_pos_chr_edges))
 #plot(g1)
 V(g1)$membership<- components(g1)$membership
@@ -64,6 +67,7 @@ arrays_pos_member<- merge(arrays_pos, membership, by="unique_name")
 arrays_pos_member$label<- arrays_pos_member$"components(g1)$membership" ##150 groups
 chr_arrays_pos_member<- arrays_pos_member %>% group_by(label) %>% summarise(n=length(unique(chr)))
 
+##now group arrays within the same region (i.e. if two arrays in Mo17 sit between the same two conserved genes, merge into one)
 arrays_pos_member$rep<- arrays_pos_member$element
 grouped_arrays_pos_member<-arrays_pos_member %>% group_by(gene_up, gene_down, dat, chr) %>% 
   summarise(array_start=min(array_start), array_end=max(array_end),

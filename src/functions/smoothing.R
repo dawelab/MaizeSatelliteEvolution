@@ -17,6 +17,8 @@ fit2_test<- readRDS("/scratch/rdp22327/Dawe/consensus/lda_model.rds")
 
 path =getwd()
 
+##smoothing classifications for an array
+
 spur_smooth<- function(k) {
   bins<- k
   bins$bin_start<- as.numeric(str_split(bins$read, pattern="_", simplify=T)[,1])
@@ -188,7 +190,7 @@ comb_over<- function(fil){
 fil=paste(rep,"_reads_class.csv", sep="")
 combined_Multi_bins<- read.csv( fil)
 # Now back to main data and applying those functions
-combined_Multi_bins2<- spur_smooth(combined_Multi_bins) #good
-combined_Multi_bins3<- comb_over(combined_Multi_bins2) #good
+combined_Multi_bins2<- spur_smooth(combined_Multi_bins) 
+combined_Multi_bins3<- comb_over(combined_Multi_bins2) 
 ##outputting data
-write.table(combined_Multi_bins3,  paste(rep, "_fin_bins_combined.txt", sep=""), quote=F, row.names=F) #combined_Multi_bins3[,c(1:14,17)]
+write.table(combined_Multi_bins3,  paste(rep, "_fin_bins_combined.txt", sep=""), quote=F, row.names=F)

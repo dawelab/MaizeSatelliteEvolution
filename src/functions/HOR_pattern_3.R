@@ -215,25 +215,25 @@ string_out<- as.data.frame(matrix(nrow=length(data_files), ncol=7))
 colnames(string_out)<-c("chr","bin","clust_val","start", "rep","pattern", "purity")
 HOR_bed_filt_all<- as.data.frame(matrix(nrow=0, ncol=4))
 for(j in 1:length(data_files)){
-  dat<- read.csv(data_files[j])
+  dat<- read.csv(data_files[j]) #brining in that clustering info
   nam_split<- str_split(data_files[j], pattern = "_|[.]", simplify=T)
-  string_out$bin[j]<-paste(nam_split[1,3], nam_split[1,7], sep="_")
+  string_out$bin[j]<-paste(nam_split[1,3], nam_split[1,7], sep="_") #monomer name contains cluster and coordinate info that we need
   string_out$chr[j]<-nam_split[1,3]    
 #if(string_out$chr[j] == "chr10") { #for AB10_HALF_AB10
-  string_out$clust_val[j]<-reval[reval$bin %in% string_out$bin[j], ]$clust_val
-  string_out$start[j]<-reval[reval$bin %in% string_out$bin[j], ]$start
-  string_out$rep[j]<-as.character(reval[reval$bin %in% string_out$bin[j], ]$rep)
-  pattern_out<-pattern_string(dat)
-  write.table(pattern_out, paste(nam_split[1,3], nam_split[1,7], string_out$rep[j], ".out", sep="_") , col.names=F, row.names=F, quote=F)
+  string_out$clust_val[j]<-reval[reval$bin %in% string_out$bin[j], ]$clust_val #labeleding monomer by cluster
+  string_out$start[j]<-reval[reval$bin %in% string_out$bin[j], ]$start #labeling monomer by coordinate
+  string_out$rep[j]<-as.character(reval[reval$bin %in% string_out$bin[j], ]$rep) #make sure repeat type is the sam
+  pattern_out<-pattern_string(dat) #this converts those monomer cluster labels to letters and puts the monomers in order based on coordinate. Now we have a character string!
+  write.table(pattern_out, paste(nam_split[1,3], nam_split[1,7], string_out$rep[j], ".out", sep="_") , col.names=F, row.names=F, quote=F) #output those strings
   string_out$pattern[j]<-paste(pattern_out$letter, collapse="")
-    HOR_patterns<- filtered_kmer_counts(string_out$pattern[j])
+    HOR_patterns<- filtered_kmer_counts(string_out$pattern[j]) #reports all the kmers
     if(nrow(HOR_patterns) > 0 ){
-      HOR_bed_filt<- HOR_patt_check(HOR_patterns, string_out$pattern[j])
+      HOR_bed_filt<- HOR_patt_check(HOR_patterns, string_out$pattern[j]) #filtering kmers and checking
     }else{
       HOR_bed_filt<- HOR_patterns
     }  
     if(nrow( HOR_bed_filt) >0 ){
-      string_out$purity[j]<-purity_calc( HOR_bed_filt,  string_out$pattern[j])
+      string_out$purity[j]<-purity_calc( HOR_bed_filt,  string_out$pattern[j]) #purity is # mono in any patter/total
       HOR_bed_filt$bin<- paste(string_out$chr[j],"_", string_out$start[j], sep="")
       HOR_bed_filt<-cbind(HOR_bed_filt$bin, HOR_bed_filt$V1, HOR_bed_filt$V2, HOR_bed_filt$V3)
       colnames(HOR_bed_filt)<-c("bin", "Pattern", "Start", "End")

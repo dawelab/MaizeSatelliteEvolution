@@ -74,7 +74,7 @@ echo $ar
 fi
 done<"$dir"/arrays_"$lin"
 #predict structure
-Rscript --vanilla /scratch/rdp22327/Dawe/mono/class.R $i /scratch/rdp22327/Dawe/scaffolding/Mo17_scaff/"$dir"/structure_"$i"_"$lin"_arrays2
+Rscript --vanilla /scratch/rdp22327/Dawe/mono/class_norep.R $i /scratch/rdp22327/Dawe/scaffolding/Mo17_scaff/"$dir"/structure_"$i"_"$lin"_arrays2
 #smooth bins
 Rscript --vanilla /scratch/rdp22327/Dawe/mono/smoothing.R $i /scratch/rdp22327/Dawe/scaffolding/Mo17_scaff/"$dir"/structure_"$i"_"$lin"_arrays2
 done

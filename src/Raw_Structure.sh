@@ -44,7 +44,7 @@ cat sub_all_"$rep"_"$reads"_monomers2.fa.blat | awk '$1 ~ /^[0-9]*$/'| awk 'NR>1
 done<filt_all_"$rep"_"$reads"_monomers.fa.blat.sub 
 if [ ! -f read_out_"$rep"_"$reads"_norep/*_reads_class.csv ]
 then
-Rscript --vanilla ../mono/class.R $rep ./read_out_"$rep"_"$reads"_norep
+Rscript --vanilla ../mono/class_norep.R $rep ./read_out_"$rep"_"$reads"_norep
 fi
 done
 

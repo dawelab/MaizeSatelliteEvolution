@@ -16,6 +16,7 @@ lin=$(echo $dir | sed 's/_.*//' )
 echo $dir
 echo $lin
 
+#extract monomers
 cat "$dir"/ragtag.scaffold.fasta_repeats.blast_*_arrays.bed > "$dir"/ragtag.scaffold.fasta_repeats.blast_ALL_arrays.bed
 bedtools getfasta -fi "$dir"/ragtag.scaffold.fasta -bed "$dir"/ragtag.scaffold.fasta_repeats.blast_ALL_arrays.bed > "$dir"/ragtag.scaffold.fasta_arrays.fasta
 

@@ -38,8 +38,6 @@ network_summary_list<- list()
   for(i in 1:length(data_files)){
   print(data_files[i])
     y<- as.data.frame(read.table(data_files[i]))
-    #nam<- str_split( data_files[i], pattern="/", simplify=T)[,7]
-    #nam<- str_split( data_files[i], pattern="/", simplify=T)[,8]#for conserved arrays
     nam<- str_split( data_files[i], pattern="/", simplify=T)[,9]
     colnames(y)<- c("match", "nam1", "len1", "nam2", "len2")
     y$match<- as.numeric(as.character(y$match))
@@ -51,11 +49,7 @@ network_summary_list<- list()
     rev_dat2<-dat2
     colnames(rev_dat2)<- c("nam2",  "nam1", "jacc")
     dat2_d<- rbind( dat2, rev_dat2)
-#    dat2_mat<- dat2_d %>% group_by(nam1, nam2) %>% summarise(jacc=max(jacc)) %>% as.data.frame()
     dat2_mat<- acast(dat2_d, nam1~nam2, value.var="jacc", fun.aggregate = max, fill=0.0000)
-#    check<- spread(dat2_mat,nam2,jacc)
-#    check[is.na(check)]<- 0
-#    dat2_df<-check
   for(j in 1:nrow( dat2_mat)){
       dat2_mat[j,j]<-1
     }

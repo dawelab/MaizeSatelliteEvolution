@@ -132,7 +132,8 @@ for( i in 1:length(All) ){
         network_summary[i,15]<- 1
         network_summary[i,16]<- rep
         }
-        
+
+	#labeling monomers by group. Here, just use a number
     nams_group<- as.data.frame(matrix(nrow=0, ncol=2))
       if( length(keep) > 1) {
       for( k in 1:nrow(nams)){

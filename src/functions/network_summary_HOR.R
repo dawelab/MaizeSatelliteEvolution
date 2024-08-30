@@ -18,8 +18,9 @@ data_files<- file.info(dir(dir, pattern=c( "sub_HOR"), full.names=FALSE)) ##all 
 data_files2<- row.names(data_files[data_files$size !=0, ])
 data_files3<-grep(glob2rx("sub_HOR*.blat"), data_files2, value = TRUE)
 
-## First section of code reads in the pairwise monomer comparison scores for th_HOR_bins.bede bin, turns them into a similarity matrix, and creates networks for similarity thresholds, as extracted from file name
-# Summarizing information from those networks are then saved in data frames
+## First section of code reads in the pairwise monomer comparison scores for HOR_bins.bed  bin, turns them into a similarity matrix, and creates networks for similarity thresholds,
+#as extracted from file name -- just regenerating cluster into
+# Summarizing information from those networks are then saved in data frames for double checking classifications done "under the hood" make sense
 
 All <- lapply(data_files3,function(i){
 	x<- read.table(i)

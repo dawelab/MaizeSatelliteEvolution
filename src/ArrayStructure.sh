@@ -95,4 +95,30 @@ awk '{
    | sort -k1,1 | awk -v var1="$dir" -v var2="$rep" '{if($2>0) print var1"\t"var2"\t"$1"\t"$2}' >> All_Arrays_Totals
 done
 done
+########
+
+##Additionally, all the monomer structure bins combined into one file
+while read i
+do
+ for j in "$i"/*/*_fin_bins_combined.txt
+ do
+  grep "chr" $j  > "$j"_sub
+  cat "$j"_sub  | awk '{print $1}' | sed 's/.*chr/chr/' | sed 's/_.*//' > chr
+  cat "$j"_sub  | awk '{print $1}' | sed 's/.*://' |  sed 's/-.*//'> array_start
+  cat "$j"_sub  | awk '{print $1}' |  sed 's/.*-//' | sed 's/_comp.*//' | sed 's/.*_//'> rep
+  cat "$j"_sub   | paste chr array_start rep - > all
+  cat all | awk -v l="$i" '{print $1"_"l"\t"$2+$17-10000"\t"$2+$18-10000"\t"$3"\t"$5"\t"$6"\t"$20"\t"$1"\t"l}'>> all_Mo17_scaff_structure_bins_2
+ done
+done<Mo17_dirs_plus
+cat  Ab10_arrays_tail_grouped grouped_arrays_pos_member | awk '{print $4"_"$3"\t"$5"\t"$6"\t"$7"\t"$12}' > grouped_arrays_pos_member_ab10_sub
+
+
+module load BEDTools/2.29.2-GCC-8.3.0
+bedtools sort -i all_Mo17_scaff_structure_bins_2 > all_Mo17_scaff_structure_bins.bed
+bedtools sort -i grouped_arrays_pos_member_ab10_sub > grouped_arrays_pos_member_ab10_sub.bed
+ 
+bedtools intersect  -nonamecheck  -a grouped_arrays_pos_member_ab10_sub.bed -b all_Mo17_scaff_structure_bins.bed -wa -wb > all_structure_conserved_wMo17_v2
+cat all_structure_conserved_wMo17_v2 | awk '{if($4 == $9)print $0}'| awk '{print $14"\t"$4"\t"$13"\t"$2"\t"$7"\t"$8"\t"$5"\t"$10"\t"$11"\t"$12}' > all_structure_conserved_wMo17_v2_mod
+
+
 

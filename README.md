@@ -2,7 +2,9 @@
 
 
 Repeat Consensus Sequences : https://github.com/dawelab/ETR_in_HiFi/tree/main/Consensus_Repeats
+
  outputs: https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/out
+ 
  figures: https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/figures 
 
  
@@ -43,8 +45,10 @@ https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/OldAssem_ReadsA
      https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/Conserved_Arrays.R
 
 
-5. Structure 
+5. Structure
+   
    **_Repeat Structure._**
+   
    - Model : Classification model creation from sample data. LDA model chosen to further analysis.
      https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/Model_Classification
    - Raw reads : Raw repeat structure predicted from monomer similarity network toplogy using LDA model.
@@ -55,6 +59,10 @@ https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/OldAssem_ReadsA
      https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/HOR_re-eval.sh
      
 
-5. Structure 
+6. Repat Array Comparisons
+  - Grouping arrys from conserved groups
 
+  https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/Array_Group_summaries.sh
+   
+  - 
      

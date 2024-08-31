@@ -2,13 +2,15 @@
 
 
 Repeat Consensus Sequences : https://github.com/dawelab/ETR_in_HiFi/tree/main/Consensus_Repeats
+ outputs: https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/out
+ figures: https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/figures 
 
+ 
 ## Project outline:
 1. Issues in OLD Assemblies
 **_Repeat Content Estimation._**
 	- Repeats in Raw Data, mapping : Long reads from Gapless Ab10 assemly are aligned to the gapless Ab10 assembly using minimap2. Read hits are filtered to a single positions (2308) and averaged in 10kb windows.
-code: https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/OldAssem_ReadsAlign_RepContent.sh
-figure outputs:https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/figures 
+https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/OldAssem_ReadsAlign_RepContent.sh
 
 2. Issues in NEW Assemblies
    
@@ -25,8 +27,6 @@ figure outputs:https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/figu
     - HiFi Reads Repeats, Length, Coverage , Quality : CCS reads are compared to repeat consensus sequences using blast. Total repeat content is then calculated.Then, contigs are generated and the same process is repeated. Finally, the contig v satellite repeat output is used to check for anchored ends on contigs, defined as contigs that do not have a satellite hit within 100bp of start or end bp.
       https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/RepContentAndContigAnchor.sh
 
-      outputs: https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/out
-
     - biases
    
    		flow cell code: https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/flowcell_bias.sh
@@ -37,14 +37,11 @@ figure outputs:https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/figu
 4. Arrays
    **_Conserved Repeat Positions._**
    - Finding Arrays : Repeat hits within 10kb were merged using bedtools. Arrays with >=10 monomers and >= 10% repeat content were defined as repeat arrays. Array positions were then compared to 100N gaps using bedtools. Then, array positions were compared to core genes using bedtools closest.
-     https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/ArrayPositions.sh
-
-	
+     https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/ArrayPositions.sh	
      
    - Conserved Array Positions : Array positions were clustered together based on repeat type and shared up and down core genes.
      https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/Conserved_Arrays.R
 
-     outputs: https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/out
 
 5. Structure 
    **_Repeat Structure._**
@@ -54,4 +51,10 @@ figure outputs:https://github.com/dawelab/MaizeSatelliteEvolution/tree/main/figu
       https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/Raw_Structure.sh
    - Assembly structure : Assembly reoeat structure predicted using non-overlapping 10kb bins from monomer similarity network toplogy using LDA model.
      https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/ArrayStructure.sh
+   - Assessing HOR structure: labeling monomers by cluster, checking character string for repeating kmers
+     https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/HOR_re-eval.sh
+     
+
+5. Structure 
+
      

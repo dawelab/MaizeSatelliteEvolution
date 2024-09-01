@@ -58,11 +58,15 @@ https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/OldAssem_ReadsA
    - Assessing HOR structure: labeling monomers by cluster, checking character string for repeating kmers
      https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/HOR_re-eval.sh
      
+6. Shared HOR patterns
+   - Generating consensus monomers for all identified HOR's
+     https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/HOR_reclustering.sh
+   - clustering consensus monomers and looking for patterns
+     https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/HOR_recluster_Pattern.sh
 
-6. Repat Array Comparisons
-  - Grouping arrys from conserved groups
-
-  https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/Array_Group_summaries.sh
+7. Repat Array Comparisons
+  - Grouping homologous arrays
+	 https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/Array_Group_summaries.sh
    
   - 
      

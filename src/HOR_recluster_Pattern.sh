@@ -29,18 +29,6 @@ Rscript --vanilla /scratch/rdp22327/Dawe/scaffolding/Mo17_scaff/HOR_newpatt_repa
 
 
 
-while read lab #group info
-do
-for clust in .9 .91 .92 .93 .94 .95 .96 .97 .98 .99
-do
-cat HOR_clust/*_"$lab"_"$clust".fasta > HOR_newpatt/all_"$lab"_"$clust".fasta
-blat HOR_newpatt/all_"$lab"_"$clust".fasta HOR_newpatt/all_"$lab"_"$clust".fasta -t=dna -q=dna -maxGap=10 -minScore=0 -repMatch=2147483647 HOR_newpatt/HOR_all_"$lab"_"$clust".fasta.blat
-grep '^[0-9]' HOR_newpatt/HOR_all_"$lab"_"$clust".fasta.blat > HOR_newpatt/sub_HOR_all_"$lab"_"$clust".fasta.blat
-done #clust
-done<labels_sub
-
-
-
 ###################
 ##grouping shared patterns in/with Mo17 
 while read lab #group info

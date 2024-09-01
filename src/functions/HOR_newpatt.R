@@ -102,7 +102,7 @@ for( i in 1:length(All) ){
 
         nams_group$bin<-data_files3[i]
         
-    write.csv(nams_group, paste( data_files3[i], "_bins_nam_groups.csv", sep=""), quote=F)
+    write.csv(nams_group, paste( data_files3[i], "_bins_nam_groups.csv", sep=""), quote=F) #monomer labels from clusters
     }
 }
 

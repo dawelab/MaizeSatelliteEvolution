@@ -38,7 +38,7 @@ done<labels_sub
 
 
 ###################
-
+##grouping shared patterns in/with Mo17 
 while read lab #group info
 do
 for v in 9 91 92 93 94 95 96 97 98 99

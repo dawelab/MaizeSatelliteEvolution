@@ -160,7 +160,7 @@ for(j in 1:length(data_files)){
                 sub2<- sub[sub$bin %in% b,]
                 dir_bin=paste("/scratch/rdp22327/Dawe/scaffolding/Mo17_scaff/",p,sep="")
                 data_fil<- dir(dir_bin, pattern=c(b), full.names=TRUE)
-                for( d in data_fil){
+                for( d in data_fil){ #match with total monomer list
                         orig_dat<- read.table(d)
                         colnames(orig_dat)<- c("V1", "V2")
                         orig_dat_M<- merge(orig_dat,sub2,by.x="V2", by.y="orig", all=T, fill=NA )

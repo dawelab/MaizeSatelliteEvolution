@@ -64,9 +64,10 @@ https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/OldAssem_ReadsA
    - clustering consensus monomers and looking for patterns
      https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/HOR_recluster_Pattern.sh
 
-7. Repat Array Comparisons
-  - Grouping homologous arrays
-	 https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/Array_Group_summaries.sh
-   
-  - 
-     
+7. Repeat Array Comparisons
+   -   Grouping homologous arrays-- dot plots
+	 https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/Array_Homolog_Grouping.sh
+   -   Grouping homologous arrays-- pariwise comparisons
+    	https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/Homolog_Similiarity.sh
+    - Array dot plot generation and summary in R
+      <<<<<<insert code >>>>>>>>>>

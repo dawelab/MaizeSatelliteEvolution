@@ -148,11 +148,11 @@ fin<- dat_out_Z_sub_char[dat_out_Z_sub_char$filt %!in% "filt",]
 
 
 ###
-string_out<- as.data.frame(matrix(nrow=length(data_files), ncol=7))
-colnames(string_out)<-c("bin","start", "rep","pattern")
+string_out<- as.data.frame(matrix(nrow=0, ncol=3))
+colnames(string_out)<-c("line", "bin","pattern")
 
 ###
-for(j in 1:length(data_files)){
+for(j in 1:10){ #length(data_files)){
   dat<- read.csv(data_files[j])
   pattern_out<-pattern_string_v2(dat)
   
@@ -167,12 +167,22 @@ for(j in 1:length(data_files)){
                 for( d in data_fil){ #match with total original monomer list
                         orig_dat<- read.table(d)
                         colnames(orig_dat)<- c("V1", "V2")
-                        orig_dat_M<- merge(orig_dat,sub2,by.x="V2", by.y="orig", all=T, fill=NA )
+                        orig_dat_M<- merge(orig_dat,sub2,by.x="V2", by.y="orig", all=T, fill=NA ) 
                         orig_dat_M_sub<- select(orig_dat_M, c("V1", "letter"))
                         orig_dat_M_sub$letter[is.na(orig_dat_M_sub$letter)] <- "Z" #label monomers that were 
                         spl_start<- str_split(orig_dat_M_sub$V1, pattern=":", simplify=T)[,2]
                         orig_dat_M_sub$start<-  as.numeric(str_split(spl_start, pattern="-", simplify=T)[,1])
                         pattern<- paste(orig_dat_M_sub[order(orig_dat_M_sub$start),]$letter, collapse="")
+
+                 #save that new pattern information
+                       new<- as.data.frame(matrix(nrow=1, ncol=3))
+                       colnames(new)<-c("line", "bin","pattern")
+                       new$line<- p
+                       new$bin<- b
+                       new$pattern<- pattern
+                       string_out<- rbind(string_out, new)
+
+                 #
                         HOR_patterns<- filtered_kmer_counts(pattern)
                 
                         if(nrow(HOR_patterns)>0){
@@ -201,4 +211,6 @@ for(j in 1:length(data_files)){
  }
 }
 
-
+ string_out
+write.table(string_out, "SHARED_Pattern_String.out", col.names=F, row.names=F, quote=F)
+  

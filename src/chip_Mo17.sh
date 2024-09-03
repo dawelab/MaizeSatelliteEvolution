@@ -32,7 +32,7 @@ do
 bwa mem -k 50 -c 1000000 -t 20 $ref "$i".R1_*.fq.gz "$i".R2_*.fq.gz  > "$i"_Mo17new.sam #align
 samtools view -b -S -F 2308 "$i"_Mo17new.sam >  "$i"_Mo17new.bam #filter to unique mapping
 bedtools intersect -b unique.bed -abam "$i"_Mo17new.bam -ubam -wa -F 1 > unique_"$i"_Mo17new.bam #only hits that completely overlap a unique k-mer in the assembly
-samtools sort "$i"_Mo17new.bam -o sort_"$i"_Mo17new > sort_"$i"_Mo17new.bam
+samtools sort unique_"$i"_Mo17new.bam -o sort_"$i"_Mo17new > sort_"$i"_Mo17new.bam
 done
 
 #normalize input and chip

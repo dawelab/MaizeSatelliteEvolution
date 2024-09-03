@@ -2,6 +2,8 @@
 
 module load seqtk/1.3-GCC-11.2.0
 module load BEDTools/2.29.2-GCC-8.3.0
+module load HMMER/3.3.2-gompi-2022a
+module load BLAT/3.5-GCC-11.2.0
 
 #grouping all the genomes into one
 while read lin

@@ -146,10 +146,23 @@ fin<- dat_out_Z_sub_char[dat_out_Z_sub_char$filt %!in% "filt",]
   
 } 
 
+bed_convert<- function(bed_fil, patt){
+  as_bed<- as.data.frame(matrix(nrow=0, ncol=3))
+  for(i in 1:nrow(bed_fil)){ 
+    coords<- unlist(gregexpr(bed_fil[i,1], patt))
+    co_sub<- as.data.frame((matrix(nrow=length(coords), ncol=3)))
+    co_sub$V1<- as.character(bed_fil[i,1])
+    co_sub$V2<- coords
+    co_sub$V3<- co_sub$V2+nchar(co_sub$V1)-1
+    as_bed<- rbind(as_bed, co_sub)
+  }
+  return(as_bed)
+}
+
 
 ###
-string_out<- as.data.frame(matrix(nrow=0, ncol=3))
-colnames(string_out)<-c("line", "bin","pattern")
+#string_out<- as.data.frame(matrix(nrow=0, ncol=3))
+#colnames(string_out)<-c("line", "bin","pattern")
 
 ###
 for(j in 1:10){ #length(data_files)){
@@ -157,9 +170,10 @@ for(j in 1:10){ #length(data_files)){
   pattern_out<-pattern_string_v2(dat)
   
   HOR_patterns_all<- as.data.frame(matrix(nrow=0, ncol=7))
+  HOR_patterns_all_bed<- as.data.frame(matrix(nrow=0, ncol=5))
   
   for( p in unique(pattern_out$dir)){
-        sub<- pattern_out[pattern_out$dir %in% p,]
+        sub<- pattern_out[pattern_out$dir %in% p & pattern_out$bin %like% "_",] #making sure bin column is formatting right too
         for(b in unique(sub$bin)){
                 sub2<- sub[sub$bin %in% b,]
                 dir_bin=paste("/scratch/rdp22327/Dawe/scaffolding/Mo17_scaff/",p,sep="")
@@ -175,12 +189,12 @@ for(j in 1:10){ #length(data_files)){
                         pattern<- paste(orig_dat_M_sub[order(orig_dat_M_sub$start),]$letter, collapse="")
 
                  #save that new pattern information
-                       new<- as.data.frame(matrix(nrow=1, ncol=3))
-                       colnames(new)<-c("line", "bin","pattern")
-                       new$line<- p
-                       new$bin<- b
-                       new$pattern<- pattern
-                       string_out<- rbind(string_out, new)
+                       #new<- as.data.frame(matrix(nrow=1, ncol=3))
+                       #colnames(new)<-c("line", "bin","pattern")
+                       #new$line<- p
+                       #new$bin<- b
+                       #new$pattern<- pattern
+                       #string_out<- rbind(string_out, new)
 
                  #
                         HOR_patterns<- filtered_kmer_counts(pattern)
@@ -189,6 +203,11 @@ for(j in 1:10){ #length(data_files)){
                                 HOR_patterns$dir<- p
                                 HOR_patterns$bin<- b
                                 HOR_patterns_all<- rbind(HOR_patterns_all,HOR_patterns )
+
+                                HOR_patterns_bed<- bed_convert( HOR_patterns, pattern)
+                                HOR_patterns_bed$dir<- p
+                                HOR_patterns_bed$bin<- b
+                                HOR_patterns_all_bed<- rbind(HOR_patterns_all_bed, HOR_patterns_bed)
                                 }
                 }
           }
@@ -203,14 +222,14 @@ for(j in 1:10){ #length(data_files)){
     HOR_patterns_all_sub_M_filt<- filtered_kmer_counts_2(HOR_patterns_all_sub_M)
     
     nam_split<- str_split(data_files[j], pattern="[.]|_", simplify=T)
-        write.table(HOR_patterns_all_sub, paste(nam_split[1,4], nam_split[1,6], "SHARED_ALL_HOR.out", sep="_") , col.names=F, row.names=F, quote=F)
+    #write.table(HOR_patterns_all_sub, paste(nam_split[1,4], nam_split[1,6], "SHARED_ALL_HOR.out", sep="_") , col.names=F, row.names=F, quote=F)
+    write.table(HOR_patterns_all_bed, paste(nam_split[1,4], nam_split[1,6], "SHARED_ALL_HOR.bed", sep="_") , col.names=F, row.names=F, quote=F)
         
-    HOR_patterns_all_sub2<-  HOR_patterns_all_sub[ HOR_patterns_all_sub$out %in% HOR_patterns_all_sub_M_filt$out, ]
-    write.table(HOR_patterns_all_sub2, paste(nam_split[1,4], nam_split[1,6], "SHARED_FILT_HOR.out", sep="_") , col.names=F, row.names=F, quote=F)
+    #HOR_patterns_all_sub2<-  HOR_patterns_all_sub[ HOR_patterns_all_sub$out %in% HOR_patterns_all_sub_M_filt$out, ]
+    #write.table(HOR_patterns_all_sub2, paste(nam_split[1,4], nam_split[1,6], "SHARED_FILT_HOR.out", sep="_") , col.names=F, row.names=F, quote=F)
     }
  }
 }
 
- string_out
 write.table(string_out, "SHARED_Pattern_String.out", col.names=F, row.names=F, quote=F)
   

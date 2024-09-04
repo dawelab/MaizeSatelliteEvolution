@@ -189,14 +189,13 @@ for(j in 1:length(data_files)){
                         pattern<- paste(orig_dat_M_sub[order(orig_dat_M_sub$start),]$letter, collapse="")
 
                  #save that new pattern information
-                       #new<- as.data.frame(matrix(nrow=1, ncol=3))
-                       #colnames(new)<-c("line", "bin","pattern")
-                       #new$line<- p
-                       #new$bin<- b
-                       #new$pattern<- pattern
-                       #string_out<- rbind(string_out, new)
+                       new<- as.data.frame(matrix(nrow=1, ncol=3))
+                       colnames(new)<-c("line", "bin","pattern")
+                       new$line<- p
+                       new$bin<- b
+                       new$pattern<- pattern
+                       string_out<- rbind(string_out, new)
 
-                 #
                         HOR_patterns<- filtered_kmer_counts(pattern)
                 
                         if(nrow(HOR_patterns)>0){
@@ -222,11 +221,11 @@ for(j in 1:length(data_files)){
     HOR_patterns_all_sub_M_filt<- filtered_kmer_counts_2(HOR_patterns_all_sub_M)
     
     nam_split<- str_split(data_files[j], pattern="[.]|_", simplify=T)
-    #write.table(HOR_patterns_all_sub, paste(nam_split[1,4], nam_split[1,6], "SHARED_ALL_HOR.out", sep="_") , col.names=F, row.names=F, quote=F)
+    write.table(HOR_patterns_all_sub, paste(nam_split[1,4], nam_split[1,6], "SHARED_ALL_HOR.out", sep="_") , col.names=F, row.names=F, quote=F)
     write.table(HOR_patterns_all_bed, paste(nam_split[1,4], nam_split[1,6], "SHARED_ALL_HOR.bed", sep="_") , col.names=F, row.names=F, quote=F)
         
-    #HOR_patterns_all_sub2<-  HOR_patterns_all_sub[ HOR_patterns_all_sub$out %in% HOR_patterns_all_sub_M_filt$out, ]
-    #write.table(HOR_patterns_all_sub2, paste(nam_split[1,4], nam_split[1,6], "SHARED_FILT_HOR.out", sep="_") , col.names=F, row.names=F, quote=F)
+    HOR_patterns_all_sub2<-  HOR_patterns_all_sub[ HOR_patterns_all_sub$out %in% HOR_patterns_all_sub_M_filt$out, ]
+    write.table(HOR_patterns_all_sub2, paste(nam_split[1,4], nam_split[1,6], "SHARED_FILT_HOR.out", sep="_") , col.names=F, row.names=F, quote=F)
     }
  }
 }

@@ -47,6 +47,8 @@ level=$(echo $i| awk -F"_" '{print $2}')
 cat $i| awk -v var="$level" '{print $0"\t"var}'| awk -v var="$group" '{print $0"\t"var}' >> ALL_SHARED_ALL_HOR.bed
 done
 
+#ALL_SHARED_ALL_HOR.bed is split into teosinte and maize on git for size reasons
+
 ##purity HOR 
 
 #https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/functions/Shared_HOR_purity.R

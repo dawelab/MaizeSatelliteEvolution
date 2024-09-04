@@ -40,6 +40,12 @@ cat HOR_newpatt/SHARED_Pattern_String.out | awk '{print $1"_"$2"\t"$3}' | sort >
 
 join -1 1 -2 1 sort_all_string_out  sort_SHARED_Pattern_String.out > ALL_SHARED_Pattern_String.out
 
+for i in [1-9]*SHARED_ALL_HOR.bed
+do
+group=$(echo $i| awk -F"_" '{print $1}')
+level=$(echo $i| awk -F"_" '{print $2}')
+cat $i| awk -v var="$level" '{print $0"\t"var}'| awk -v var="$group" '{print $0"\t"var}' >> ALL_SHARED_ALL_HOR.bed
+done
 
 
 ###################

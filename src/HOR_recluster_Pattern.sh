@@ -47,6 +47,9 @@ level=$(echo $i| awk -F"_" '{print $2}')
 cat $i| awk -v var="$level" '{print $0"\t"var}'| awk -v var="$group" '{print $0"\t"var}' >> ALL_SHARED_ALL_HOR.bed
 done
 
+##purity HOR 
+
+#https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/functions/Shared_HOR_purity.R
 
 ###################
 ##grouping shared patterns in/with Mo17 

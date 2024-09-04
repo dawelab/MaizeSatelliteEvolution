@@ -27,6 +27,19 @@ module load R/4.1.2-foss-2021b
 Rscript --vanilla /scratch/rdp22327/Dawe/scaffolding/Mo17_scaff/HOR_newpatt.R /scratch/rdp22327/Dawe/scaffolding/Mo17_scaff/HOR_newpatt
 Rscript --vanilla /scratch/rdp22327/Dawe/scaffolding/Mo17_scaff/HOR_newpatt_repatt.R /scratch/rdp22327/Dawe/scaffolding/Mo17_scaff/HOR_newpatt
 
+################### #grouping all the string_out.csv files from original monomer string with new strings
+for i in */string_out.csv
+do
+line=$(echo $i | awk -F"/" '{print $1}')
+echo $line
+cat $i |awk -F"," -v var="$line" '{print var"\t"$2"\t"$3"\t"$4"\t"$5"\t"$6"\t"$7"\t"$8}' >> all_string_out
+done
+
+cat all_string_out| awk '{print $1"_"$3"\t"$0}'| sort > sort_all_string_out #old strings
+cat HOR_newpatt/SHARED_Pattern_String.out | awk '{print $1"_"$2"\t"$3}' | sort > sort_SHARED_Pattern_String.out #new strings
+
+join -1 1 -2 1 sort_all_string_out  sort_SHARED_Pattern_String.out > ALL_SHARED_Pattern_String.out
+
 
 
 ###################

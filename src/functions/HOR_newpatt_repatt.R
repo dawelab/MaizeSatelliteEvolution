@@ -165,7 +165,7 @@ bed_convert<- function(bed_fil, patt){
 #colnames(string_out)<-c("line", "bin","pattern")
 
 ###
-for(j in 1:10){ #length(data_files)){
+for(j in 1:length(data_files)){
   dat<- read.csv(data_files[j])
   pattern_out<-pattern_string_v2(dat)
   

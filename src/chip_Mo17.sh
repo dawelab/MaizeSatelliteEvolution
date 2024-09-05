@@ -35,6 +35,18 @@ bedtools intersect -b unique.bed -abam "$i"_Mo17new.bam -ubam -wa -F 1 > unique_
 samtools sort unique_"$i"_Mo17new.bam -o sort_"$i"_Mo17new > sort_"$i"_Mo17new.bam
 done
 
+
+chip="SRR21509777"
+in="SRR21509779"
+paste "$chip"_Mo17new.bam.bed_1000.bed "$in"_Mo17new.bam.bed_1000.bed | awk '{if($8>0) print $1"\t"$2"\t"$3"\t"$4/$8}' > "$chip"_"$in"_unique_1kb_norm.bed
+
+chip="SRR21509776"
+in="SRR21509778"
+paste "$chip"_Mo17new.bam.bed_1000.bed "$in"_Mo17new.bam.bed_1000.bed | awk '{if($8>0) print $1"\t"$2"\t"$3"\t"$4/$8}' > "$chip"_"$in"_unique_1kb_norm.bed
+
+
+
+
 #normalize input and chip
 module load deepTools/3.5.2-foss-2022a
 #rep1

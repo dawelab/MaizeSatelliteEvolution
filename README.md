@@ -73,3 +73,9 @@ https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/OldAssem_ReadsA
     	https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/Homolog_Similiarity.sh
     - Array dot plot generation and summary in R
       <<<<<<insert code >>>>>>>>>>
+
+8. Chip-seq
+  	-  Chipseq alignemnt to Mo17, using unique k-mers
+    	https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/chip_Mo17.sh
+	-  plotting in R with patterns
+	 <<<<< insert code  >>>>

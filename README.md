@@ -72,7 +72,7 @@ https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/OldAssem_ReadsA
    -   Grouping homologous arrays-- pariwise comparisons
     	https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/Homolog_Similiarity.sh
     - Array dot plot generation and summary in R
-      <<<<<<insert code >>>>>>>>>>
+      	https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/HomologousArrayComps.R
 
 8. Chip-seq
   	-  Chipseq alignemnt to Mo17, using unique k-mers

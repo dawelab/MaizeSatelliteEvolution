@@ -65,6 +65,8 @@ https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/OldAssem_ReadsA
      https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/HOR_recluster_Pattern.sh
    - Purity of shared patterns and pulling HORs that occur multiple times within one array
      https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/functions/Shared_HOR_purity.R
+   - Shared HOR's among all knob180 arrays in CG108
+     https://github.com/dawelab/MaizeSatelliteEvolution/blob/67073f6893c2d6417749dac8a8b1b46fb7968361/src/SHARED_HORknobs.sh 
 
 7. Repeat Array Comparisons
    -   Grouping homologous arrays-- dot plots

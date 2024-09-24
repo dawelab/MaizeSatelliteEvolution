@@ -52,14 +52,14 @@ module load deepTools/3.5.2-foss-2022a
 #rep1
 chip="SRR21509777"
 in="SRR21509779"
-bamCompare -b1 sort_unique_"$chip"_Mo17new.bam -b2 sort_unique_"$in"_Mo17new.bam --operation ratio --binSize 1000 --scaleFactorsMethod None  --normalizeUsing RPKM -o "$chip"_"$in"_1000_rpkmNORM.bw
-bamCompare -b1 sort_unique_"$chip"_Mo17new.bam -b2 sort_unique_"$in"_Mo17new.bam --operation ratio --binSize 1000 --scaleFactorsMethod None  --normalizeUsing ratio -o "$chip"_"$in"_1000_ratioNORM.bw
+bamCompare -b1 sort_unique_"$chip"_Mo17new.bam -b2 sort_unique_"$in"_Mo17new.bam -of bedgraph --operation ratio --binSize 1000 --scaleFactorsMethod None  --normalizeUsing RPKM -o "$chip"_"$in"_1000_rpkmNORM.bw
+bamCompare -b1 sort_unique_"$chip"_Mo17new.bam -b2 sort_unique_"$in"_Mo17new.bam -of bedgraph --operation ratio --binSize 1000 --scaleFactorsMethod None  --normalizeUsing ratio -o "$chip"_"$in"_1000_ratioNORM.bw
 
 #rep2
 chip="SRR21509776"
 in="SRR21509778"
-bamCompare -b1 sort_unique_"$chip"_Mo17new.bam -b2 sort_unique_"$in"_Mo17new.bam --operation ratio --binSize 1000 --scaleFactorsMethod None  --normalizeUsing RPKM -o "$chip"_"$in"_1000_rpkmNORM.bw
-bamCompare -b1 sort_unique_"$chip"_Mo17new.bam -b2 sort_unique_"$in"_Mo17new.bam --operation ratio --binSize 1000 --scaleFactorsMethod None  --normalizeUsing ratio -o "$chip"_"$in"_1000_ratioNORM.bw
+bamCompare -b1 sort_unique_"$chip"_Mo17new.bam -b2 sort_unique_"$in"_Mo17new.bam -of bedgraph --operation ratio --binSize 1000 --scaleFactorsMethod None  --normalizeUsing RPKM -o "$chip"_"$in"_1000_rpkmNORM.bw
+bamCompare -b1 sort_unique_"$chip"_Mo17new.bam -b2 sort_unique_"$in"_Mo17new.bam -of bedgraph --operation ratio --binSize 1000 --scaleFactorsMethod None  --normalizeUsing ratio -o "$chip"_"$in"_1000_ratioNORM.bw
 
 
 

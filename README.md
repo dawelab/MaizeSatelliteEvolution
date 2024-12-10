@@ -58,7 +58,11 @@ https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/OldAssem_ReadsA
    - Assessing HOR structure: labeling monomers by cluster, checking character string for repeating kmers
      https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/HOR_re-eval.sh
      
-6. Shared HOR patterns
+6. Similarity blocks
+   - all to all monomers for 1Mb regions
+     https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/SimilarityBlocks.sh
+     
+8. Shared HOR patterns
    - Generating consensus monomers for all identified HOR's
      https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/HOR_reclustering.sh
    - clustering consensus monomers and looking for patterns
@@ -68,7 +72,7 @@ https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/OldAssem_ReadsA
    - Shared HOR's among all knob180 arrays in CG108
      https://github.com/dawelab/MaizeSatelliteEvolution/blob/67073f6893c2d6417749dac8a8b1b46fb7968361/src/SHARED_HORknobs.sh 
 
-7. Repeat Array Comparisons
+9. Repeat Array Comparisons
    -   Grouping homologous arrays-- dot plots
 	 https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/Array_Homolog_Grouping.sh
    -   Grouping homologous arrays-- pariwise comparisons
@@ -76,7 +80,7 @@ https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/OldAssem_ReadsA
     - Array dot plot generation and summary in R -- specific information for Mo17 and CG!08
       	https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/HomologousArrayComps.R
 
-8. Chip-seq
+10. Chip-seq
   	-  Chipseq alignemnt to Mo17, using unique k-mers
     	https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/chip_Mo17.sh
 	-  plotting in R with patterns

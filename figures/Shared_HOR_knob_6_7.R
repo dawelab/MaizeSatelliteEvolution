@@ -226,3 +226,17 @@ ggplot()+
   theme_classic() 
 
 
+
+
+HOR_knob_coord<- HOR_knob %>% filter(V1 %in% c("ADBA", "AADB", "BAAD", "ADB", "ADJ", "DBA", "DBR","DBEL", "BEL","DBE")) %>%
+  group_by(V1, V6) %>% select(V1, chr, V5, V6, V7, start) %>%  unique()
+
+HOR_knob_coord$V1<- as.factor(HOR_knob_coord$V1)
+HOR_knob_coord$V1<- factor(HOR_knob_coord$V1, 
+                           levels=c("DBE", "BEL", "DBEL","DBR", "DBA","ADJ","ADB","BAAD","AADB" ,"ADBA"),
+                           ordered=T)
+#fig 5, S4, S5 dot plots
+ggplot()+
+  geom_point(data=HOR_knob_coord, size=1, aes(x=start, y=V1))+
+  facet_wrap(~chr, strip.position = "right", nrow = 3)+ #, scales="free_x"
+  theme_classic() 

@@ -1,7 +1,6 @@
 # Bin Structure Classification Model
 
-NC350 chromosomes 2, 7, and 10 were used to create the classification models because they all contained Expansions. 
-The top priority for these models is identifying Expansions correctly.
+NC350 chromosomes 2, 7, and 10 were used to create the classification models.
 
 For the purposes of model making, non-overlapping 20kb bins were used to reduce the sample size. However, all summary measures are made to 
 be proportionate to the total # of monomers in a bin, so the size of the bin should not affect accuracy of the model.

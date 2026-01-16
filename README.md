@@ -80,13 +80,13 @@ https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/OldAssem_ReadsA
     - Array dot plot generation and summary in R -- specific information for Mo17 and CG!08
       	https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/HomologousArrayComps.R
 
-## Citation
-If you use this software in academic work, please cite: Piri RD, Wang M, Romay CM, 
-Buckler ES, Dawe RK. Higher order repeat structures reflect diverging evolutionary 
-paths in maize centromeres and knobs. Genome Biology.
-
 10. Chip-seq
   	-  Chipseq alignemnt to Mo17, using unique k-mers
     	https://github.com/dawelab/MaizeSatelliteEvolution/blob/main/src/chip_Mo17.sh
 	-  plotting in R with patterns
 	 <<<<< insert code  >>>>
+
+## Citation
+If you use this software in academic work, please cite: Piri RD, Wang M, Romay CM, 
+Buckler ES, Dawe RK. Higher order repeat structures reflect diverging evolutionary 
+paths in maize centromeres and knobs. Genome Biology.
